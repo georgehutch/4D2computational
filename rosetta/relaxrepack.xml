@@ -1,0 +1,34 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="tlr" weights="talaris2014_cst" />
+    </SCOREFXNS>
+    <RESIDUE_SELECTORS>
+    </RESIDUE_SELECTORS>
+    <TASKOPERATIONS>
+    <ReadResfile name="resfile" filename="resfile.txt" />
+    <ExtraRotamersGeneric name="extrachi" ex1="1" ex2="1" ex1_sample_level="1" ex2_sample_level="1" /> 
+   </TASKOPERATIONS>
+    <FILTERS>
+    <PackStat name="stat1" threshold="0.58" chain="0" repeats="1" />
+    </FILTERS>
+    <MOVERS>
+    <PackRotamersMover name="pack1" scorefxn="tlr" task_operations="resfile,extrachi"/>
+    <FastRelax name="relax1" />
+    <ConstraintSetMover name="constraint1" add_constraints="true" cst_file="constraints.cst"/> 
+   </MOVERS>
+    <APPLY_TO_POSE>
+    </APPLY_TO_POSE>
+    <PROTOCOLS>
+    <Add mover="constraint1" />
+    <Add mover="pack1" />
+    <Add mover="relax1" />
+    <Add mover="pack1" />
+    <Add mover="relax1" />
+    <Add mover="pack1" />
+    <Add mover="relax1" />
+    <Add filter="stat1" />
+    <Add mover="pack1" />
+    <Add mover="relax1" />  
+    </PROTOCOLS>
+    <OUTPUT scorefxn="talaris2014"/>
+</ROSETTASCRIPTS>
