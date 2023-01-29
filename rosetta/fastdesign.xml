@@ -1,0 +1,28 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+     <ScoreFunction name="t14cst" weights="talaris2014_cst" />
+    </SCOREFXNS>
+    <RESIDUE_SELECTORS>
+    </RESIDUE_SELECTORS>
+    <TASKOPERATIONS>
+            <ReadResfile name="designresidues" filename="resfile.txt"/>
+        <ExtraRotamersGeneric name="extrachi" ex1="1" ex2="1" ex1_sample_level="1" ex2_sample_level="1" />
+    </TASKOPERATIONS>
+    <FILTERS>
+    	<PackStat name="pstat" threshold="0.58" repeats="3"/>
+    </FILTERS>
+    <MOVERS>
+    <ConstraintSetMover name="cst" add_constraints=1 cst_file="constraints.cst"/>
+    <FastDesign name="design" repeats=5 scorefxn="t14cst" 
+                clear_designable_residues="false" ramp_down_constraints="false" 
+                task_operations="designresidues,extrachi" />
+    </MOVERS>
+    <APPLY_TO_POSE>
+    </APPLY_TO_POSE>
+    <PROTOCOLS>
+    <Add mover_name="cst"/>
+    <Add mover_name="design"/>
+    <Add filter_name="pstat"/>
+    </PROTOCOLS>
+    <OUTPUT scorefxn="talaris2014"/>
+</ROSETTASCRIPTS>
