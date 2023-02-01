@@ -1,0 +1,53 @@
+# Reference:
+# Yang, Longhua, Åge A. Skjevik, Wen-Ge Han Du, Louis Noodleman, Ross C. Walker, and Andreas W. Götz. 
+# Data for molecular dynamics simulations of B-type cytochrome c oxidase with the Amber force field. 
+# Data in brief 8 (2016): 1209-1214.
+#
+#
+#----- leaprc for loading the Cytochrome c Oxidase of ba3 type from Thermus thermophilus. ----- 
+#      Charges for the DNC derived using a cluster model for state 6 of the reaction cycle
+#      (ref. L.Noodleman et al. Inorg. Chem., 53 (2014) 6458; 
+#            J.A.Fee et al. J.Am.Chem.Soc., 130 (2008) 15002.)
+#
+
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+
+addAtomTypes {
+        {"FE" "Fe" "sp3"}
+        { "NO" "N" "sp2" }    ## Modified by George to define NO and NP atoms as sp2 hybridised.
+        { "NP" "N" "sp2" }    ## Prevents sp0 errors in leap.
+
+}
+
+# Load heme b parameters:
+
+loadamberparams heme.frcmod
+loadoff hemeb.lib
+
+# Load pdb and bond iron to ligating histidine nitrogens:
+
+mol = loadpdb e4D2_v1_100ns.pdb
+
+bond mol.9.NE2 mol.197.FE
+bond mol.109.NE2 mol.197.FE
+bond mol.79.NE2 mol.198.FE
+bond mol.179.NE2 mol.198.FE
+bond mol.30.NE2 mol.199.FE
+bond mol.130.NE2 mol.199.FE
+bond mol.58.NE2 mol.200.FE
+bond mol.158.NE2 mol.200.FE
+
+
+#Solvate, check charge, and save amber parameter+topology files:
+
+solvatebox mol TIP3PBOX 10
+charge mol
+addIons2 mol Na+ 0
+charge mol
+
+saveamberparm mol e4D2.prmtop e4D2.inpcrd
+savepdb mol e4D2leap.pdb
+
+quit
+
