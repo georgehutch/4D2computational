@@ -27,7 +27,7 @@ loadoff hemeb.lib
 
 # Load pdb and bond iron to ligating histidine nitrogens:
 
-mol = loadpdb e4D2_v1_100ns.pdb
+mol = loadpdb e4D2.pdb
 
 bond mol.9.NE2 mol.197.FE
 bond mol.109.NE2 mol.197.FE
