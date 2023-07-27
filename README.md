@@ -6,3 +6,4 @@ Computational design and molecular dynamics parameters and scripts for the analy
 
 References
 Wood, Christopher W., et al. "ISAMBARD: an open-source computational environment for biomolecular analysis, modelling and design." Bioinformatics 33.19 (2017): 3043-3050.
+Polizzi, Nicholas F., et al. "De novo design of a hyperstable non-natural protein–ligand complex with sub-Å accuracy." Nature chemistry 9.12 (2017): 1157-1164.
