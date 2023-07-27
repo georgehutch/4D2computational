@@ -3,3 +3,6 @@ Computational design and molecular dynamics parameters and scripts for the analy
 1. RosettaScripts and heme parameters for m4D2 design
 2. ISAMBARD analysis of 4D2 for construction of an e4D2 model
 3. Molecular dynamics parameters and input scripts for apo and heme-bound AMBER simulations
+
+References
+Wood, Christopher W., et al. "ISAMBARD: an open-source computational environment for biomolecular analysis, modelling and design." Bioinformatics 33.19 (2017): 3043-3050.
